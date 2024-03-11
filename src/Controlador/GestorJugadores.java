@@ -7,6 +7,7 @@ package Controlador;
 import Modelo.Equipo;
 import Modelo.Jugador;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -14,8 +15,11 @@ import java.util.ArrayList;
  */
 public class GestorJugadores {
 
+    private Equipo equipoActual;
+    private Equipo equipoProximo;
     private ArrayList<Equipo> equipos;
     private ArrayList<Jugador> jugadoresNoElectos;
+    private int turno;
 
     public GestorJugadores() {
         this.equipos = new ArrayList<>();
@@ -47,6 +51,32 @@ public class GestorJugadores {
                     propiedades.getData("Equipo" + i + ".departamento")
             );
             i++;//suma al iterador para buscar el proximo equipo
+        }
+    }
+    
+    
+    public void seleccionarEquipos(){
+        Random random = new Random();
+        int randomIndex = random.nextInt(this.equipos.size());
+        this.equipoActual = equipos.get(randomIndex);
+        equipos.remove(randomIndex);
+        randomIndex =random.nextInt(this.equipos.size());
+        this.equipoProximo = equipos.get(randomIndex);
+        equipos.remove(randomIndex);
+    }
+
+    public void intercanbiarEquipos(){
+        Equipo tempEquipo = this.equipoActual;
+        this.equipoActual = this.equipoProximo;
+        this.equipoProximo = tempEquipo;
+    }
+    
+    public void manejarTurno(){
+        if(this.turno < 3)
+            this.turno ++;
+        if(this.turno > 3){
+            intercanbiarEquipos();
+            this.turno = 0;
         }
     }
 

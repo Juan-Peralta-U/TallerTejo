@@ -25,10 +25,9 @@ public class ControlManager implements ActionListener{
         ventanaPrincipal = new MainWindow();
         fileChooser = new FileChooser();
         cargarArchivo = new ArchivoPropiedades(fileChooser.getFile());
-        gestorPrincipal = new GameManager();
         gestorJugadores = new GestorJugadores();
-        
-
+        gestorJugadores.cargarEquipos(cargarArchivo);
+        gestorPrincipal = new GameManager(gestorJugadores);
     }
     
     @Override
