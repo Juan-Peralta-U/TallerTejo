@@ -37,8 +37,8 @@ public class MainWindow extends javax.swing.JFrame {
         btnLanzar = new javax.swing.JButton();
         labTituloPuntos = new javax.swing.JLabel();
         labTurno = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jugarBtn = new javax.swing.JButton();
+        salirBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,15 +66,15 @@ public class MainWindow extends javax.swing.JFrame {
         labTurno.setText("Turno 1");
         labTurno.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jButton1.setBackground(new java.awt.Color(72, 70, 255));
-        jButton1.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Volver a jugar");
+        jugarBtn.setBackground(new java.awt.Color(72, 70, 255));
+        jugarBtn.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
+        jugarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        jugarBtn.setText("Volver a jugar");
 
-        jButton2.setBackground(new java.awt.Color(72, 70, 255));
-        jButton2.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Salir");
+        salirBtn.setBackground(new java.awt.Color(72, 70, 255));
+        salirBtn.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
+        salirBtn.setForeground(new java.awt.Color(255, 255, 255));
+        salirBtn.setText("Salir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,9 +85,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jugarBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(salirBtn)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(teamPanelA, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,8 +128,8 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(teamPanelB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jugarBtn)
+                    .addComponent(salirBtn))
                 .addGap(19, 19, 19))
         );
 
@@ -174,12 +174,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnLanzar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton jugarBtn;
     public javax.swing.JLabel labPuntos;
     private javax.swing.JLabel labTitulo;
     private javax.swing.JLabel labTituloPuntos;
     public javax.swing.JLabel labTurno;
+    public javax.swing.JButton salirBtn;
     public Vista.TeamPanel teamPanelA;
     public Vista.TeamPanel teamPanelB;
     // End of variables declaration//GEN-END:variables
