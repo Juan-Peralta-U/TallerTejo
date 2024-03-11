@@ -15,26 +15,5 @@ import java.util.Properties;
  */
 public class ControlManager {
 
-    Properties propiedades = new Properties();
-    InputStream entrada = null;
-
-    public void leerEquipos() {
-        try {
-            entrada = new FileInputStream("Equipos.properties");
-            propiedades.load(entrada);
-            System.out.println(propiedades.getProperty("basedatos"));
-            System.out.println(propiedades.getProperty("usuario"));
-            System.out.println(propiedades.getProperty("clave"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (entrada != null) {
-                try {
-                    entrada.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+    
 }
