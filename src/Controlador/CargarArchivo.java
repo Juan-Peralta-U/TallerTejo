@@ -8,30 +8,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import Vista.FileChooser;
-import Vista.MainWindow;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 /**
  *
- * @author Juan
+ * @author Familia Mora
  */
-public class ControlManager implements ActionListener{
+public class CargarArchivo {
+    Properties propiedades = new Properties();
+    InputStream entrada = null;
 
-    private MainWindow ventanaPrincipal; 
-    private GameManager gestorPrincipal;
-    private FileChooser fileChooser;
-    private Properties propiedades = new Properties();
-    private InputStream entrada = null;
-
-    
-    public ControlManager() {
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    }
-    
     public void leerEquipos() {
         try {
             entrada = new FileInputStream("Equipos.properties");
@@ -51,10 +36,4 @@ public class ControlManager implements ActionListener{
             }
         }
     }
-
-    
-    
-}    
-
-    
 }
