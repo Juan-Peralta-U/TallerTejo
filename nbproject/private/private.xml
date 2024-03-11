@@ -3,19 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Controlador/ControlManager.java</file>
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Controlador/GameManager.java</file>
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Modelo/Equipo.java</file>
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Vista/FileChooser.java</file>
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/data/Equipos.properties</file>
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Controlador/SistemaSonido.java</file>
             <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Controlador/C</file>
-=======
-=======
-            <file>file:/C:/Users/Familia%20Mora/Desktop/TallerTejo/src/Vista/FileChooser.java</file>
-            <file>file:/C:/Users/Familia%20Mora/Desktop/TallerTejo/src/Modelo/Jugador.java</file>
-            <file>file:/C:/Users/Familia%20Mora/Desktop/TallerTejo/src/Modelo/Equipo.java</file>
->>>>>>> ca4b9bed4203204b162ed2fc3cceca50b9337745
-            <file>file:/C:/Users/Familia%20Mora/Desktop/TallerTejo/data/P</file>
-            <file>file:/C:/Users/Familia%20Mora/Desktop/TallerTejo/data/Equipos.properties</file>
-            <file>file:/C:/Users/Familia%20Mora/Desktop/TallerTejo/src/Controlador/ControlManager.java</file>
->>>>>>> 12f5b0c3fcc3a5ad2a6d3d2094db59ec872d602e
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Controlador/GestorJugadores.java</file>
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Controlador/CargarArchivo.java</file>
+            <file>file:/C:/Users/Juan/Desktop/Coding%20Projects/PA/TallerTejo/src/Modelo/Jugador.java</file>
         </group>
     </open-files>
 </project-private>

@@ -16,7 +16,10 @@ public class Equipo {
     private String departamento;
     private ArrayList<Jugador> jugadores; 
 
-    public Equipo() {
+    public Equipo(int id, String nombre, String departamento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.departamento = departamento;
     }
-   
+
 }

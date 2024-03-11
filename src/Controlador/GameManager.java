@@ -10,13 +10,13 @@ package Controlador;
  */
 public class GameManager {
     
-    private GestorJugadores gestorJugadores;
+    private ControlManager controlManager;
     private SistemaSonido sistemaSonido;
     
     public GameManager(){
-        
-        //gestorJugadores = new GestorJugadores();
+        this.controlManager = controlManager;
         sistemaSonido = new SistemaSonido();
+        
         
     }
     
