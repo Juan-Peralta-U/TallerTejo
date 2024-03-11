@@ -10,4 +10,14 @@ package Controlador;
  */
 public class GameManager {
     
+    private GestorJugadores gestorJugadores;
+    private SistemaSonido sistemaSonido;
+    
+    public GameManager(){
+        
+        //gestorJugadores = new GestorJugadores();
+        sistemaSonido = new SistemaSonido();
+        
+    }
+    
 }
