@@ -4,7 +4,9 @@
  */
 package Vista;
 
+import Controlador.ControlManager;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,10 +17,11 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    
+    private ControlManager control;
+    public MainWindow(ControlManager control) {
         initComponents();
-        getContentPane().setBackground(new Color(235, 239, 255));
-        setVisible(true);
+        this.control=control;
     }
 
     /**
@@ -136,11 +139,9 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    
+    public void mensajeEmergente(String m){
+        JOptionPane.showMessageDialog(null, m);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnJugar;

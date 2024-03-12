@@ -22,10 +22,11 @@ public class GameManager {
     }
     
     
-    public void lanzarTejo(){
+    public int lanzarTejo(){
         Random random = new Random();
         
-        switch(random.nextInt(5)){
+        int resultadoRandom = random.nextInt(5);
+        switch(resultadoRandom){
             case 0->{
                 //mano
                 this.puntosActual++;
@@ -48,7 +49,7 @@ public class GameManager {
                 //mucho malo
             }
         }
-        
+        return resultadoRandom;
     }
     
     
