@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Modelo.ArchivoAleatorio;
 import Modelo.ArchivoPropiedades;
 import Vista.FileChooser;
 import Vista.MainWindow;
@@ -18,24 +19,30 @@ import java.awt.event.ActionListener;
 public class ControlManager implements ActionListener {
 
     private MainWindow ventanaPrincipal;
-    private FileChooser fileChooser;
+    private FileChooser fileChooser1;
+    private FileChooser fileChooser2;
     private ArchivoPropiedades dataEquipos;
     private GameManager gestorPrincipal;
     private GestorJugadores gestorJugadores;
+    private ArchivoAleatorio archivoSalida;
 
     public ControlManager() {
         ventanaPrincipal = new MainWindow(this);
-        fileChooser = new FileChooser("Selecciona archivo propiedades");
-        dataEquipos = new ArchivoPropiedades(fileChooser.getFile());
+        fileChooser1 = new FileChooser("Selecciona archivo propiedades");
+        fileChooser2 = new FileChooser("Seleccione el archivo aleatorio");
+        dataEquipos = new ArchivoPropiedades(fileChooser1.getFile());
+        archivoSalida = new ArchivoAleatorio(fileChooser2.getFile());
         gestorJugadores = new GestorJugadores();
         gestorJugadores.cargarEquipos(dataEquipos);
         gestorPrincipal = new GameManager(gestorJugadores);
-        
+
         ventanaPrincipal.btnLanzar.addActionListener(this);
         ventanaPrincipal.btnJugar.addActionListener(this);
         ventanaPrincipal.btnSalir.addActionListener(this);
         iniciarVista();
 
+        archivoSalida.escribir(0, 5, "jajaj", "Juan", "Cesar", "Care", "Monda", true);
+        System.out.println(archivoSalida.lecturaRegistros());
     }
 
     @Override
@@ -53,16 +60,16 @@ public class ControlManager implements ActionListener {
             }
         }
     }
-    
+
     private void iniciarVista() {
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.setTitle("Tejo");
         ventanaPrincipal.setLocationRelativeTo(null);
-        
+
         ventanaPrincipal.getContentPane().setBackground(new Color(235, 239, 255));
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.teamPanelB.labEquipo.setBackground(Color.red);
-        
+
         configurarEquipos();
     }
 

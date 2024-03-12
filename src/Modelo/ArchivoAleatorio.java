@@ -41,10 +41,15 @@ public class ArchivoAleatorio {
                 System.in));
         try {
             nombreEquipo = this.completarTamañoBytes(nombreEquipo, 40);
+            System.out.println(nombreEquipo);
             nameJ1 = this.completarTamañoBytes(nameJ1, 20);
+            System.out.println(nameJ1);
             nameJ2 = this.completarTamañoBytes(nameJ2, 20);
+            System.out.println(nameJ2);
             nameJ3 = this.completarTamañoBytes(nameJ3, 20);
+            System.out.println(nameJ3);
             nameJ4 = this.completarTamañoBytes(nameJ4, 20);
+            System.out.println(nameJ4);
 
             if (Rf.length() != 0) {
                 Rf.seek(Rf.length());
@@ -74,7 +79,7 @@ public class ArchivoAleatorio {
         String nameJ4 = "";
         String aux = "";
         boolean resultado = false;
-        String respuesta = ("Registro\tNumeroEquipo\tNombreEquipo\tNombreJugador1\tNombreJugador2\tNombreJugador3\tNombreJugador4\tResulatdo\n");
+        String respuesta = ("");
         try {
             Rf.seek(0);
             canReg = Rf.length() / tamañoRegistro;
@@ -82,6 +87,11 @@ public class ArchivoAleatorio {
             for (int r = 0; r < canReg; r++) {
                 clave = Rf.readInt();
                 numeroEquipo = Rf.readInt();
+                nombreEquipo = "";
+                nameJ1 = "";
+                nameJ2 = "";
+                nameJ3 = "";
+                nameJ4 = "";
 
                 for (int i = 0; i < 41; ++i) {
                     nombreEquipo += Rf.readChar();
@@ -111,11 +121,11 @@ public class ArchivoAleatorio {
                     aux = "Perdedor";
                 }
 
-                respuesta += (clave + "\t" + numeroEquipo + "\t" + nombreEquipo + "\t" + nameJ1 + "\t" + nameJ2 + "\t" + nameJ3 + "\t" + nameJ4 + "\t" + aux + "\n");
+                respuesta += ("\n" + clave + "\t\t" + numeroEquipo + "\t\t" + nombreEquipo + "\t" + nameJ1 + "\t" + nameJ2 + "\t" + nameJ3 + "\t" + nameJ4 + "\t" + aux + "\n");
             }
         } catch (Exception e) {
         }
-        return null;
+        return respuesta;
     }
 
 //    public int ultimoRegistro() {
