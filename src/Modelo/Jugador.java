@@ -16,8 +16,33 @@ public class Jugador {
     private int edad;
     private ImageIcon foto;
 
-    public Jugador() {
+    public Jugador(String nombre, String cedula, int edad) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.edad = edad;
     }
     
+    public Jugador(String nombre, String cedula, int edad, ImageIcon foto) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.edad = edad;
+        this.foto = foto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public ImageIcon getFoto() {
+        return foto;
+    }
     
 }

@@ -16,7 +16,36 @@ public class Equipo {
     private String departamento;
     private ArrayList<Jugador> jugadores; 
 
-    public Equipo() {
+    public Equipo(int id, String nombre, String departamento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.departamento = departamento;
+        this.jugadores = new ArrayList<>();
     }
-   
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+    
+    public String getJugador(int index){
+        return this.jugadores.get(index).getNombre();
+    }
+    
+    public void add(Jugador nuevoJugador){
+        this.jugadores.add(nuevoJugador);
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+            
 }
+
