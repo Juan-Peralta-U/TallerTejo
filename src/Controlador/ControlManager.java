@@ -4,59 +4,74 @@
  */
 package Controlador;
 
+import Modelo.ArchivoPropiedades;
 import Vista.FileChooser;
 import Vista.MainWindow;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /**
  *
  * @author Juan
  */
-public class ControlManager implements ActionListener{
+public class ControlManager implements ActionListener {
 
-    private MainWindow ventanaPrincipal; 
+    private MainWindow ventanaPrincipal;
     private FileChooser fileChooser;
-    private ArchivoPropiedades cargarArchivo;
+    private ArchivoPropiedades dataEquipos;
     private GameManager gestorPrincipal;
     private GestorJugadores gestorJugadores;
 
-    
     public ControlManager() {
+        ventanaPrincipal = new MainWindow(this);
         fileChooser = new FileChooser();
-        cargarArchivo = new ArchivoPropiedades(fileChooser.getFile());
+        dataEquipos = new ArchivoPropiedades(fileChooser.getFile());
         gestorJugadores = new GestorJugadores();
-        gestorJugadores.cargarEquipos(cargarArchivo);
+        gestorJugadores.cargarEquipos(dataEquipos);
         gestorPrincipal = new GameManager(gestorJugadores);
-        ventanaPrincipal = new MainWindow();
-
         
         ventanaPrincipal.btnLanzar.addActionListener(this);
         ventanaPrincipal.btnJugar.addActionListener(this);
         ventanaPrincipal.btnSalir.addActionListener(this);
-  
+        iniciarVista();
+
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        switch(e.getActionCommand()){
-            case "Lanzar el tejo"->{
-                this.gestorPrincipal.lanzarTejo();
+
+        switch (e.getActionCommand()) {
+            case "Lanzar el tejo" -> {
+                ventanaPrincipal.mensajeEmergente("" + this.gestorPrincipal.lanzarTejo());
             }
-            case "Volver a jugar"->{
-                this.gestorJugadores.seleccionarEquipos();
-                this.gestorJugadores.cargarVistaEquipo(this.ventanaPrincipal.teamPanelA);
-                this.gestorJugadores.intercanbiarEquipos();
-                this.gestorJugadores.cargarVistaEquipo(this.ventanaPrincipal.teamPanelB);
-                this.gestorJugadores.intercanbiarEquipos();
+            case "Volver a jugar" -> {
+                configurarEquipos();
             }
-            case "Salir"->{
-                
+            case "Salir" -> {
+
             }
         }
     }
     
-    
-}    
+    private void iniciarVista() {
+        ventanaPrincipal.setVisible(true);
+        ventanaPrincipal.setTitle("Tejo");
+        ventanaPrincipal.setLocationRelativeTo(null);
+        
+        ventanaPrincipal.getContentPane().setBackground(new Color(235, 239, 255));
+        ventanaPrincipal.setVisible(true);
+        ventanaPrincipal.teamPanelB.labEquipo.setBackground(Color.red);
+        
+        configurarEquipos();
+    }
 
-    
+    public void configurarEquipos() {
+        this.gestorJugadores.seleccionarEquipos();
+        this.gestorJugadores.cargarVistaEquipo(this.ventanaPrincipal.teamPanelA);
+        this.gestorJugadores.intercambiarEquipos();
+        this.gestorJugadores.cargarVistaEquipo(this.ventanaPrincipal.teamPanelB);
+        this.gestorJugadores.intercambiarEquipos();
+    }
+
+}
