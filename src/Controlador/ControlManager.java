@@ -25,7 +25,7 @@ public class ControlManager implements ActionListener {
 
     public ControlManager() {
         ventanaPrincipal = new MainWindow(this);
-        fileChooser = new FileChooser();
+        fileChooser = new FileChooser("Selecciona archivo propiedades");
         dataEquipos = new ArchivoPropiedades(fileChooser.getFile());
         gestorJugadores = new GestorJugadores();
         gestorJugadores.cargarEquipos(dataEquipos);
