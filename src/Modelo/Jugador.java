@@ -4,13 +4,17 @@
  */
 package Modelo;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Familia Mora
  */
 public class Jugador {
     private String nombre;
-    private Equipo equipo;
+    private String cedula;
+    private int edad;
+    private ImageIcon foto;
 
     public Jugador() {
     }
