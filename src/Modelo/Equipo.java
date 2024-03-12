@@ -42,6 +42,10 @@ public class Equipo {
     public void add(Jugador nuevoJugador){
         this.jugadores.add(nuevoJugador);
     }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
             
 }
 
