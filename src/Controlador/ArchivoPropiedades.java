@@ -21,11 +21,11 @@ public class ArchivoPropiedades {
 
     public ArchivoPropiedades(File archivo) {
         this.archivo = archivo;
+        this.leerArchivo();
     }
 
     public void leerArchivo() {
         if(archivo == null)return;
-        
         try {
             entrada = new FileInputStream(archivo);
             propiedades.load(entrada);

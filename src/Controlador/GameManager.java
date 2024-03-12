@@ -14,6 +14,7 @@ public class GameManager {
     private SistemaSonido sistemaSonido;
     private int puntosActual;
     private int puntosProximo;
+    private GestorJugadores gestorJugadores;
     
     
     public GameManager(GestorJugadores gestorJugadores){
@@ -55,7 +56,7 @@ public class GameManager {
         if(this.puntosActual >26){
             return;
         }
-        
     }
+  
     
 }

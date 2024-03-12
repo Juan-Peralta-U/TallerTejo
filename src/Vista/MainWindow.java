@@ -5,7 +5,6 @@
 package Vista;
 
 import java.awt.Color;
-import java.io.File;
 
 /**
  *
@@ -19,6 +18,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         getContentPane().setBackground(new Color(235, 239, 255));
+        setVisible(true);
     }
 
     /**
@@ -37,8 +37,8 @@ public class MainWindow extends javax.swing.JFrame {
         btnLanzar = new javax.swing.JButton();
         labTituloPuntos = new javax.swing.JLabel();
         labTurno = new javax.swing.JLabel();
-        jugarBtn = new javax.swing.JButton();
-        salirBtn = new javax.swing.JButton();
+        btnJugar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,15 +66,15 @@ public class MainWindow extends javax.swing.JFrame {
         labTurno.setText("Turno 1");
         labTurno.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jugarBtn.setBackground(new java.awt.Color(72, 70, 255));
-        jugarBtn.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
-        jugarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        jugarBtn.setText("Volver a jugar");
+        btnJugar.setBackground(new java.awt.Color(72, 70, 255));
+        btnJugar.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
+        btnJugar.setForeground(new java.awt.Color(255, 255, 255));
+        btnJugar.setText("Volver a jugar");
 
-        salirBtn.setBackground(new java.awt.Color(72, 70, 255));
-        salirBtn.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
-        salirBtn.setForeground(new java.awt.Color(255, 255, 255));
-        salirBtn.setText("Salir");
+        btnSalir.setBackground(new java.awt.Color(72, 70, 255));
+        btnSalir.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Salir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,9 +85,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jugarBtn)
+                        .addComponent(btnJugar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(salirBtn)
+                        .addComponent(btnSalir)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(teamPanelA, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,8 +128,8 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(teamPanelB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jugarBtn)
-                    .addComponent(salirBtn))
+                    .addComponent(btnJugar)
+                    .addComponent(btnSalir))
                 .addGap(19, 19, 19))
         );
 
@@ -139,47 +139,17 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
-        
-    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnJugar;
     public javax.swing.JButton btnLanzar;
-    public javax.swing.JButton jugarBtn;
+    public javax.swing.JButton btnSalir;
     public javax.swing.JLabel labPuntos;
     private javax.swing.JLabel labTitulo;
     private javax.swing.JLabel labTituloPuntos;
     public javax.swing.JLabel labTurno;
-    public javax.swing.JButton salirBtn;
     public Vista.TeamPanel teamPanelA;
     public Vista.TeamPanel teamPanelB;
     // End of variables declaration//GEN-END:variables

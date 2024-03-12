@@ -10,10 +10,27 @@ package Modelo;
  */
 public class Jugador {
     private String nombre;
-    private Equipo equipo;
+    private String cedula;
+    private int edad;
 
-    public Jugador() {
+    public Jugador(String nombre, String cedula, int edad) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.edad = edad;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+    
     
     
 }
