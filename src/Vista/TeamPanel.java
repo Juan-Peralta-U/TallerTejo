@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JComponent;
+
 /**
  *
  * @author cesar
@@ -17,6 +21,34 @@ public class TeamPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void deshabilitar(){
+    setOpaque(false); // Hacer el JPanel transparente
+    resaltarJugador(0);
+    repaint();
+    }
+    
+    
+    public void resaltarJugador(int index){
+        this.labJugador1.setForeground(Color.black);
+        this.labJugador2.setForeground(Color.black);
+        this.labJugador3.setForeground(Color.black);
+        this.labJugador4.setForeground(Color.black);
+        switch(index){
+            case 1->this.labJugador1.setForeground(Color.red);
+            case 2->this.labJugador2.setForeground(Color.red);
+            case 3->this.labJugador3.setForeground(Color.red);
+            case 4->this.labJugador4.setForeground(Color.red);
+        }
+        
+    }
+    
+    
+    public void habilitar(){
+    setOpaque(true); // Hacer el JPanel transparente
+    repaint();
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

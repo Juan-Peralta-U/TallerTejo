@@ -4,8 +4,8 @@
  */
 package Controlador;
 
-import Modelo.ArchivoAleatorio;
 import Modelo.ArchivoPropiedades;
+import Modelo.Equipo;
 import Vista.FileChooser;
 import Vista.MainWindow;
 import java.awt.Color;
@@ -19,30 +19,25 @@ import java.awt.event.ActionListener;
 public class ControlManager implements ActionListener {
 
     private MainWindow ventanaPrincipal;
-    private FileChooser fileChooser1;
-    private FileChooser fileChooser2;
+    private FileChooser fileChooser;
     private ArchivoPropiedades dataEquipos;
     private GameManager gestorPrincipal;
     private GestorJugadores gestorJugadores;
-    private ArchivoAleatorio archivoSalida;
 
     public ControlManager() {
         ventanaPrincipal = new MainWindow(this);
-        fileChooser1 = new FileChooser("Selecciona archivo propiedades");
-        fileChooser2 = new FileChooser("Seleccione el archivo aleatorio");
-        dataEquipos = new ArchivoPropiedades(fileChooser1.getFile());
-        archivoSalida = new ArchivoAleatorio(fileChooser2.getFile());
+        fileChooser = new FileChooser();
+        dataEquipos = new ArchivoPropiedades(fileChooser.getFile());
         gestorJugadores = new GestorJugadores();
         gestorJugadores.cargarEquipos(dataEquipos);
-        gestorPrincipal = new GameManager(gestorJugadores);
-
+        gestorPrincipal = new GameManager(gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
+        gestorPrincipal.nuevaPartida();
+        
         ventanaPrincipal.btnLanzar.addActionListener(this);
         ventanaPrincipal.btnJugar.addActionListener(this);
         ventanaPrincipal.btnSalir.addActionListener(this);
         iniciarVista();
 
-        archivoSalida.escribir(0, 5, "jajaj", "Juan", "Cesar", "Care", "Monda", true);
-        System.out.println(archivoSalida.lecturaRegistros());
     }
 
     @Override
@@ -51,25 +46,41 @@ public class ControlManager implements ActionListener {
         switch (e.getActionCommand()) {
             case "Lanzar el tejo" -> {
                 ventanaPrincipal.mensajeEmergente("" + this.gestorPrincipal.lanzarTejo());
+                this.gestorPrincipal.asignarPuntaje();
+                if(this.gestorPrincipal.comprobarGanador()){
+                   ventanaPrincipal.btnJugar.setEnabled(true);
+                   ventanaPrincipal.btnLanzar.setEnabled(false);
+                   ventanaPrincipal.mensajeEmergente(this.gestorJugadores.getEquipoActual().getNombre()+ " ha Ganado");
+                }
+                this.gestorPrincipal.manejarTurno();
+                ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
+                ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Volver a jugar" -> {
                 configurarEquipos();
+                ventanaPrincipal.btnJugar.setEnabled(false);
+                ventanaPrincipal.btnLanzar.setEnabled(true);                
+                this.gestorPrincipal.nuevaPartida();
+                ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
+                ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Salir" -> {
-
+                //Gurdar
+                //Salir
             }
         }
     }
-
+    
     private void iniciarVista() {
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.setTitle("Tejo");
         ventanaPrincipal.setLocationRelativeTo(null);
-
+        
         ventanaPrincipal.getContentPane().setBackground(new Color(235, 239, 255));
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.teamPanelB.labEquipo.setBackground(Color.red);
-
+        ventanaPrincipal.btnJugar.setEnabled(false);
+        
         configurarEquipos();
     }
 
