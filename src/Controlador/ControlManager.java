@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Modelo.ArchivoAleatorio;
 import Modelo.ArchivoPropiedades;
 import Modelo.Equipo;
 import Vista.FileChooser;
@@ -18,16 +19,22 @@ import java.awt.event.ActionListener;
  */
 public class ControlManager implements ActionListener {
 
-    private MainWindow ventanaPrincipal;
-    private FileChooser fileChooser;
+    private FileChooser fileChooser1;
+    private FileChooser fileChooser2;
     private ArchivoPropiedades dataEquipos;
     private GameManager gestorPrincipal;
     private GestorJugadores gestorJugadores;
+    private ArchivoAleatorio archivoSalida;
+    private MainWindow ventanaPrincipal;
 
     public ControlManager() {
         ventanaPrincipal = new MainWindow(this);
-        fileChooser = new FileChooser();
-        dataEquipos = new ArchivoPropiedades(fileChooser.getFile());
+        
+        
+        fileChooser1 = new FileChooser("Selecciona archivo propiedades");
+        fileChooser2 = new FileChooser("Seleccione el archivo aleatorio");
+        dataEquipos = new ArchivoPropiedades(fileChooser1.getFile());
+        archivoSalida = new ArchivoAleatorio(fileChooser2.getFile());
         gestorJugadores = new GestorJugadores();
         gestorJugadores.cargarEquipos(dataEquipos);
         gestorPrincipal = new GameManager(this.gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
