@@ -31,8 +31,8 @@ public class ArchivoAleatorio {
         try {
             Rf = new RandomAccessFile(Fl, "rw");
 
-        } catch (FileNotFoundException fnfe) {
-
+        } catch (Exception e) {
+            System.exit(0);
         }
     }
 

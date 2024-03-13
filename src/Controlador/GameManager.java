@@ -91,10 +91,21 @@ public class GameManager {
             puntosActules = this.puntosA;
         }
         
-        if (puntosActules > 26) {
-            this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoActual(), "Ganador");
-            this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoProximo(), "Pededor");
-            return true;
+        // Siempre actual va a ser B
+        if (turnoJugador == 3 && (totalTurnosEquipo % 2) == 0) {
+            
+            if(puntosA > 26 && puntosA > puntosB){
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoProximo(), "Ganador");
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoActual(), "Perdedor");
+                return true;
+            }
+            
+            if(puntosB > 26 && puntosB > puntosA){
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoActual(), "Ganador");
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoProximo(), "Perdedor");
+                return true;
+            }
+            
         }
 
         return false;
@@ -118,10 +129,6 @@ public class GameManager {
         }
     }
 
-    public String getPuntos() {
-        return this.puntosA + " : " + this.puntosB;
-    }
-
     public void pasarTurno() {
         this.turnoJugador = 0;
         this.totalTurnosEquipo++;
@@ -137,5 +144,18 @@ public class GameManager {
 
 
     }
+    
+    public String getPuntos() {
+        return this.puntosA + " : " + this.puntosB;
+    }
+
+    public int getPuntosA() {
+        return puntosA;
+    }
+
+    public int getPuntosB() {
+        return puntosB;
+    }
+    
 
 }

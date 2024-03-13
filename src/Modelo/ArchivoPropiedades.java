@@ -27,6 +27,7 @@ public class ArchivoPropiedades {
 
     public void leerArchivo() {
         if (archivo == null) {
+            System.exit(0);
             return;
         }
         try {

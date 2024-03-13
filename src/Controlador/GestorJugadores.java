@@ -11,6 +11,7 @@ import Vista.TeamPanel;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -53,7 +54,7 @@ public class GestorJugadores {
     public HashMap<Equipo, String> getResultados() {
         return resultados;
     }
-    
+
     public void cargarEquipos(ArchivoPropiedades propiedades) {
 
         int i = 1; //itera por cada equipo
@@ -128,29 +129,38 @@ public class GestorJugadores {
         }
 
         panelEquipo.labEquipo.setText(this.equipoActual.getNombre());
-        panelEquipo.labJugador1.setText(this.equipoActual.getJugador(0));
-        panelEquipo.labJugador2.setText(this.equipoActual.getJugador(1));
-        panelEquipo.labJugador3.setText(this.equipoActual.getJugador(2));
-        panelEquipo.labJugador4.setText(this.equipoActual.getJugador(3));
+
+        panelEquipo.labJugador1.setText(this.equipoActual.getJugador(0).getNombre());
+        panelEquipo.labFoto1.setIcon(this.equipoActual.getJugador(0).getFoto());
+
+        panelEquipo.labJugador2.setText(this.equipoActual.getJugador(1).getNombre());
+        panelEquipo.labFoto2.setIcon(this.equipoActual.getJugador(1).getFoto());
+
+        panelEquipo.labJugador3.setText(this.equipoActual.getJugador(2).getNombre());
+        panelEquipo.labFoto3.setIcon(this.equipoActual.getJugador(2).getFoto());
+
+        panelEquipo.labJugador4.setText(this.equipoActual.getJugador(3).getNombre());
+        panelEquipo.labFoto4.setIcon(this.equipoActual.getJugador(3).getFoto());
+
     }
 
     public void crearJugadores() {
-        this.jugadoresNoElectos.add(new Jugador("Dina", "123456789", 25));
-        this.jugadoresNoElectos.add(new Jugador("Aquiles", "987654321", 30));
-        this.jugadoresNoElectos.add(new Jugador("Dbora", "456789123", 28));
-        this.jugadoresNoElectos.add(new Jugador("Zoyla", "789123456", 27));
-        this.jugadoresNoElectos.add(new Jugador("Susana", "321654987", 23));
-        this.jugadoresNoElectos.add(new Jugador("Elvis", "654321789", 29));
-        this.jugadoresNoElectos.add(new Jugador("Elsa", "147258369", 26));
-        this.jugadoresNoElectos.add(new Jugador("Esteban", "369147258", 24));
-        this.jugadoresNoElectos.add(new Jugador("Yola", "258369147", 31));
-        this.jugadoresNoElectos.add(new Jugador("Elba", "852369741", 22));
-        this.jugadoresNoElectos.add(new Jugador("Mario", "369852147", 27));
-        this.jugadoresNoElectos.add(new Jugador("Benito", "741258963", 26));
-        this.jugadoresNoElectos.add(new Jugador("Luz", "159263478", 24));
-        this.jugadoresNoElectos.add(new Jugador("Armando", "852147369", 28));
-        this.jugadoresNoElectos.add(new Jugador("Alan", "369741852", 25));
-        this.jugadoresNoElectos.add(new Jugador("Andres", "4147814615", 50));
+        this.jugadoresNoElectos.add(new Jugador("Dina", "123456789", 25, new ImageIcon(getClass().getResource("/fotos/Dina.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Aquiles", "987654321", 30, new ImageIcon(getClass().getResource("/fotos/Aquiles.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Dbora", "456789123", 28, new ImageIcon(getClass().getResource("/fotos/Dbora.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Zoyla", "789123456", 27, new ImageIcon(getClass().getResource("/fotos/Zoyla.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Susana", "321654987", 23, new ImageIcon(getClass().getResource("/fotos/Susana.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Elvis", "654321789", 29, new ImageIcon(getClass().getResource("/fotos/Elvis.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Elsa", "147258369", 26, new ImageIcon(getClass().getResource("/fotos/Elsa.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Esteban", "369147258", 24, new ImageIcon(getClass().getResource("/fotos/Esteban.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Yola", "258369147", 31, new ImageIcon(getClass().getResource("/fotos/Yola.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Elba", "852369741", 22, new ImageIcon(getClass().getResource("/fotos/Elba.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Mario", "369852147", 27, new ImageIcon(getClass().getResource("/fotos/Mario.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Benito", "741258963", 26, new ImageIcon(getClass().getResource("/fotos/Benito.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Luz", "159263478", 24, new ImageIcon(getClass().getResource("/fotos/Luz.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Armando", "852147369", 28, new ImageIcon(getClass().getResource("/fotos/Armando.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Alan", "369741852", 25, new ImageIcon(getClass().getResource("/fotos/Alan.png"))));
+        this.jugadoresNoElectos.add(new Jugador("Andres", "4147814615", 30, new ImageIcon(getClass().getResource("/fotos/Andres.png"))));
     }
 
     public ArrayList<Equipo> getEquipos() {

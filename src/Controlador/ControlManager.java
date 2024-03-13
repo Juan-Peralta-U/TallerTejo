@@ -12,6 +12,7 @@ import Vista.MainWindow;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -34,7 +35,6 @@ public class ControlManager implements ActionListener {
         fileChooser1 = new FileChooser("Selecciona archivo propiedades");
         fileChooser2 = new FileChooser("Seleccione el archivo aleatorio");
         dataEquipos = new ArchivoPropiedades(fileChooser1.getFile());
-        archivoSalida = new ArchivoAleatorio(fileChooser2.getFile());
         gestorJugadores = new GestorJugadores();
         gestorJugadores.cargarEquipos(dataEquipos);
         gestorPrincipal = new GameManager(this.gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
@@ -52,22 +52,31 @@ public class ControlManager implements ActionListener {
 
         switch (e.getActionCommand()) {
             case "Lanzar el tejo" -> {
+                
                 ventanaPrincipal.mensajeEmergente("" + this.gestorPrincipal.lanzarTejo());
                 this.gestorPrincipal.asignarPuntaje();
+                ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
+                
                 if(this.gestorPrincipal.comprobarGanador()){
                    ventanaPrincipal.btnJugar.setEnabled(true);
                    ventanaPrincipal.btnLanzar.setEnabled(false);
-                   ventanaPrincipal.mensajeEmergente(this.gestorJugadores.getEquipoActual().getNombre()+ " ha Ganado");
+                   
+                   if(gestorPrincipal.getPuntosA() > gestorPrincipal.getPuntosB()){
+                       ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoProximo().getNombre() + " ha ganado");
+                   } else {
+                       ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoActual().getNombre() + " ha ganado");
+                   }
+                   
                 }
+                
                 this.gestorPrincipal.manejarTurno();
-                ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
                 ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Volver a jugar" -> {
                 configurarEquipos();
                 
                 if(gestorJugadores.getEquipoActual().getJugadores().size()<4){
-                    ventanaPrincipal.mensajeEmergente("No hay equipos suficientes para una nueva partida");
+                    ventanaPrincipal.mensajeEmergente("No hay suficientes equipos o jugadores para una nueva partida");
                     return;
                 }
                 
@@ -80,7 +89,9 @@ public class ControlManager implements ActionListener {
                 ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Salir" -> {
+                archivoSalida = new ArchivoAleatorio(fileChooser2.getFile());
                 //Guardar
+                //Leer y dar resultados en consola
                 //Salir
             }
         }
