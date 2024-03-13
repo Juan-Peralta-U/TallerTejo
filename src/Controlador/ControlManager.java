@@ -30,7 +30,7 @@ public class ControlManager implements ActionListener {
         dataEquipos = new ArchivoPropiedades(fileChooser.getFile());
         gestorJugadores = new GestorJugadores();
         gestorJugadores.cargarEquipos(dataEquipos);
-        gestorPrincipal = new GameManager(gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
+        gestorPrincipal = new GameManager(this.gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
         gestorPrincipal.nuevaPartida();
         
         ventanaPrincipal.btnLanzar.addActionListener(this);
@@ -58,14 +58,22 @@ public class ControlManager implements ActionListener {
             }
             case "Volver a jugar" -> {
                 configurarEquipos();
+                
+                if(gestorJugadores.getEquipoActual().getJugadores().size()<4){
+                    ventanaPrincipal.mensajeEmergente("No hay equipos suficientes para una nueva partida");
+                    return;
+                }
+                
+                gestorPrincipal.nuevaPartida();
+               
                 ventanaPrincipal.btnJugar.setEnabled(false);
-                ventanaPrincipal.btnLanzar.setEnabled(true);                
-                this.gestorPrincipal.nuevaPartida();
+                ventanaPrincipal.btnLanzar.setEnabled(true);           
+                
                 ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
                 ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Salir" -> {
-                //Gurdar
+                //Guardar
                 //Salir
             }
         }

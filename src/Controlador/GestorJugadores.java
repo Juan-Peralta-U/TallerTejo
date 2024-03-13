@@ -53,10 +53,6 @@ public class GestorJugadores {
     public HashMap<Equipo, String> getResultados() {
         return resultados;
     }
-
-
-    
-    
     
     public void cargarEquipos(ArchivoPropiedades propiedades) {
 
@@ -157,4 +153,7 @@ public class GestorJugadores {
         this.jugadoresNoElectos.add(new Jugador("Andres Ruiz", "4147814615", 50));
     }
 
+    public ArrayList<Equipo> getEquipos() {
+        return equipos;
+    }
 }
