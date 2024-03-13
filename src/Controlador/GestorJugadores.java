@@ -10,6 +10,7 @@ import Modelo.Jugador;
 import Vista.TeamPanel;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.HashMap;
 
 /**
  *
@@ -21,14 +22,15 @@ public class GestorJugadores {
     private Equipo equipoProximo;
     private ArrayList<Equipo> equipos;
     private ArrayList<Jugador> jugadoresNoElectos;
-    private int turno;
+    private HashMap<Equipo, String> resultados;
 
     public GestorJugadores() {
         this.equipos = new ArrayList<>();
         this.jugadoresNoElectos = new ArrayList<>();
+        this.resultados = new HashMap<>();
         this.equipoActual = null;
         this.equipoProximo = null;
-        
+
         crearJugadores();
     }
 
@@ -36,13 +38,32 @@ public class GestorJugadores {
         equipos.add(new Equipo(id, nombre, departamento));
     }
 
+    public void AgregarResultados(Equipo equipo, String resultado) {
+        this.resultados.put(equipo, resultado);
+    }
+
+    public Equipo getEquipoActual() {
+        return equipoActual;
+    }
+
+    public Equipo getEquipoProximo() {
+        return equipoProximo;
+    }
+
+    public HashMap<Equipo, String> getResultados() {
+        return resultados;
+    }
+
+
+    
+    
+    
     public void cargarEquipos(ArchivoPropiedades propiedades) {
 
         int i = 1; //itera por cada equipo
-        
-        
+
         while (propiedades.getData("Equipo" + i + ".nombre") != null) {
-            
+
             //no aseguramos que el equipo exista
             if (propiedades.getData("Equipo" + i + ".departamento") == null) {
                 i++;
@@ -59,72 +80,65 @@ public class GestorJugadores {
                     propiedades.getData("Equipo" + i + ".nombre"),
                     propiedades.getData("Equipo" + i + ".departamento")
             );
-            
+
             i++;//suma al iterador para buscar el proximo equipo
         }
     }
 
     public void seleccionarEquipos() {
 
-        if(this.equipos.size() < 2)
+        if (this.equipos.size() < 2) {
             return;
-        
+        }
+
         Random random = new Random();
-        
+
         int randomIndex = random.nextInt(this.equipos.size());
         this.equipoActual = equipos.get(randomIndex);
         this.seleccionarJugadores(this.equipoActual);
         equipos.remove(randomIndex);
-        
-        randomIndex = random.nextInt(this.equipos.size());     
+
+        randomIndex = random.nextInt(this.equipos.size());
         this.equipoProximo = equipos.get(randomIndex);
         this.seleccionarJugadores(this.equipoProximo);
         equipos.remove(randomIndex);
     }
 
-    
-    public void seleccionarJugadores(Equipo equipo){
-        if(this.jugadoresNoElectos.size() < 4)
+    public void seleccionarJugadores(Equipo equipo) {
+        if (this.jugadoresNoElectos.size() < 4) {
             return;
+        }
         Random random = new Random();
-        for(int i=0; i<4; i++){
+        for (int i = 0; i < 4; i++) {
             int randomIndex = random.nextInt(this.jugadoresNoElectos.size());
             equipo.add(this.jugadoresNoElectos.get(randomIndex));
             this.jugadoresNoElectos.remove(randomIndex);
         }
     }
-    
+
     public void intercambiarEquipos() {
         Equipo tempEquipo = this.equipoActual;
         this.equipoActual = this.equipoProximo;
         this.equipoProximo = tempEquipo;
     }
 
-    public void manejarTurno() {
-        if (this.turno < 3) {
-            this.turno++;
+    public void cargarVistaEquipo(TeamPanel panelEquipo) {
+        if (equipoActual == null || equipoProximo == null) {
+            return;
         }
-        if (this.turno > 3) {
-            intercambiarEquipos();
-            this.turno = 0;
-        }
-    }
 
-    public void cargarVistaEquipo(TeamPanel panelEquipo){
-        if( equipoActual == null || equipoProximo == null)
+        if (equipoActual.getJugadores().isEmpty() || equipoProximo.getJugadores().isEmpty()) {
             return;
-        
-        if( equipoActual.getJugadores().isEmpty() || equipoProximo.getJugadores().isEmpty() )
-            return;
-        
+        }
+
         panelEquipo.labEquipo.setText(this.equipoActual.getNombre());
         panelEquipo.labJugador1.setText(this.equipoActual.getJugador(0));
         panelEquipo.labJugador2.setText(this.equipoActual.getJugador(1));
         panelEquipo.labJugador3.setText(this.equipoActual.getJugador(2));
         panelEquipo.labJugador4.setText(this.equipoActual.getJugador(3));
     }
-    
-    public void crearJugadores(){
+
+    public void crearJugadores() {
         this.jugadoresNoElectos.add(new Jugador("Dina Marca", "123456789", 25));
         this.jugadoresNoElectos.add(new Jugador("Aquiles Brinco", "987654321", 30));
         this.jugadoresNoElectos.add(new Jugador("Dbora Melo", "456789123", 28));
