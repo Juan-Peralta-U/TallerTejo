@@ -30,7 +30,8 @@ public class GameManager {
         this.teamPanelProximo = teamPanelProximo;
     }
 
-    public void nuevaPartida() {
+    public boolean nuevaPartida() {
+        
         if ((this.totalTurnosEquipo % 2) != 0) {
             this.pasarTurno();
         }
@@ -42,7 +43,8 @@ public class GameManager {
         this.turnoJugador = 0;
         this.pasarTurno();
         this.teamPanelActual.resaltarJugador(this.turnoJugador+1);
-
+        
+        return true;
     }
 
     public String lanzarTejo() {
