@@ -46,6 +46,21 @@ public class Equipo {
     public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }
+    
+    public String toStringJugadores(){
+        String rta = "Nombre - Cedula - Edad \n";
+        for(Jugador jugador : this.jugadores){
+            rta += jugador.getNombre() + " - " + jugador.getCedula() + " - " + jugador.getEdad() + "\n";
+        }
+        return rta;
+    }
+    
+    
+    public String toString(){
+        String rta = "Nombre Equipo - Departamento - id  \n";        
+        rta += this.getNombre() + " - " + this.getDepartamento() + " - " + this.getId() + "\n";
+        return rta;
+    }
             
 }
 

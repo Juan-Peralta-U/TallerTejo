@@ -30,8 +30,7 @@ public class ControlManager implements ActionListener {
 
     public ControlManager() {
         ventanaPrincipal = new MainWindow(this);
-        
-        
+
         fileChooser1 = new FileChooser("Selecciona archivo propiedades");
         fileChooser2 = new FileChooser("Seleccione el archivo aleatorio");
         dataEquipos = new ArchivoPropiedades(fileChooser1.getFile());
@@ -39,7 +38,7 @@ public class ControlManager implements ActionListener {
         gestorJugadores.cargarEquipos(dataEquipos);
         gestorPrincipal = new GameManager(this.gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
         gestorPrincipal.nuevaPartida();
-        
+
         ventanaPrincipal.btnLanzar.addActionListener(this);
         ventanaPrincipal.btnJugar.addActionListener(this);
         ventanaPrincipal.btnSalir.addActionListener(this);
@@ -52,39 +51,43 @@ public class ControlManager implements ActionListener {
 
         switch (e.getActionCommand()) {
             case "Lanzar el tejo" -> {
-                
+
                 ventanaPrincipal.mensajeEmergente("" + this.gestorPrincipal.lanzarTejo());
                 this.gestorPrincipal.asignarPuntaje();
                 ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
-                
-                if(this.gestorPrincipal.comprobarGanador()){
-                   ventanaPrincipal.btnJugar.setEnabled(true);
-                   ventanaPrincipal.btnLanzar.setEnabled(false);
-                   
-                   if(gestorPrincipal.getPuntosA() > gestorPrincipal.getPuntosB()){
-                       ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoProximo().getNombre() + " ha ganado");
-                   } else {
-                       ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoActual().getNombre() + " ha ganado");
-                   }
-                   
+
+                if (this.gestorPrincipal.comprobarGanador()) {
+                    ventanaPrincipal.btnJugar.setEnabled(true);
+                    ventanaPrincipal.btnLanzar.setEnabled(false);
+
+                    if (gestorPrincipal.getPuntosA() > gestorPrincipal.getPuntosB()) {
+                        ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoProximo().getNombre() + " ha ganado");
+                        ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoProximo().toString() + "\n"
+                                + gestorJugadores.getEquipoProximo().toStringJugadores());
+                    } else {
+                        ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoActual().getNombre() + " ha ganado");
+                        ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoActual().toString() + "\n"
+                                + gestorJugadores.getEquipoActual().toStringJugadores());
+                    }
+
                 }
-                
+
                 this.gestorPrincipal.manejarTurno();
                 ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Volver a jugar" -> {
                 configurarEquipos();
-                
-                if(gestorJugadores.getEquipoActual().getJugadores().size()<4){
+
+                if (gestorJugadores.getEquipoActual().getJugadores().size() < 4) {
                     ventanaPrincipal.mensajeEmergente("No hay suficientes equipos o jugadores para una nueva partida");
                     return;
                 }
-                
+
                 gestorPrincipal.nuevaPartida();
-               
+
                 ventanaPrincipal.btnJugar.setEnabled(false);
-                ventanaPrincipal.btnLanzar.setEnabled(true);           
-                
+                ventanaPrincipal.btnLanzar.setEnabled(true);
+
                 ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
                 ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
@@ -98,17 +101,18 @@ public class ControlManager implements ActionListener {
             }
         }
     }
-    
+
     private void iniciarVista() {
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.setTitle("Tejo");
         ventanaPrincipal.setLocationRelativeTo(null);
-        
+        ventanaPrincipal.setDefaultCloseOperation(0);
+
         ventanaPrincipal.getContentPane().setBackground(new Color(235, 239, 255));
         ventanaPrincipal.setVisible(true);
         ventanaPrincipal.teamPanelB.labEquipo.setBackground(Color.red);
         ventanaPrincipal.btnJugar.setEnabled(false);
-        
+
         configurarEquipos();
     }
 
