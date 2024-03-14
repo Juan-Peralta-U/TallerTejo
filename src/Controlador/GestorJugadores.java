@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Modelo.ArchivoAleatorio;
 import Modelo.ArchivoPropiedades;
 import Modelo.Equipo;
 import Modelo.Jugador;
@@ -166,4 +167,18 @@ public class GestorJugadores {
     public ArrayList<Equipo> getEquipos() {
         return equipos;
     }
+    
+    
+    public void guardarResultados(ArchivoAleatorio archivoAleatorio){
+        
+        int i = 0;
+        
+        for(Equipo equipo : resultados.keySet()){
+            archivoAleatorio.escribir(equipo.getId(), equipo.getNombre()
+           ,equipo.getJugador(0).getNombre(), equipo.getJugador(1).getNombre()
+           ,equipo.getJugador(2).getNombre(), equipo.getJugador(3).getNombre()
+           ,this.resultados.get(equipo).equals("Ganador") ? true : false);
+        }
+    }
+    
 }

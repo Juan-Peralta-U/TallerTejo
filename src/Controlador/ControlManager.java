@@ -90,9 +90,11 @@ public class ControlManager implements ActionListener {
             }
             case "Salir" -> {
                 archivoSalida = new ArchivoAleatorio(fileChooser2.getFile());
-                //Guardar
-                //Leer y dar resultados en consola
-                //Salir
+                gestorJugadores.guardarResultados(archivoSalida);
+                ventanaPrincipal.mensajeConsola(archivoSalida.lecturaRegistros());
+                ventanaPrincipal.setVisible(false);
+                ventanaPrincipal.dispose();
+                System.exit(0);
             }
         }
     }

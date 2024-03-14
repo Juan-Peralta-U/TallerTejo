@@ -20,13 +20,14 @@ public class ArchivoAleatorio {
     private RandomAccessFile Rf;
     private long tamañoRegistro;
     private long canReg;
+    private int clave = 0;
 
     public ArchivoAleatorio(File Fl) {
         this.canReg = 0;
-        this.tamañoRegistro = 109;
-
+        this.tamañoRegistro = 129;
+        
         /*
-        4+4+40+20+20+20+20+1= 109 bytes
+        4+4+40+20+20+20+20+1= 129 bytes
          */
         try {
             Rf = new RandomAccessFile(Fl, "rw");
@@ -36,20 +37,16 @@ public class ArchivoAleatorio {
         }
     }
 
-    public void escribir(int clave, int numeroEquipo, String nombreEquipo, String nameJ1, String nameJ2, String nameJ3, String nameJ4, boolean resultado) {
+    public void escribir(int numeroEquipo, String nombreEquipo, String nameJ1, String nameJ2, String nameJ3, String nameJ4, boolean resultado) {
         BufferedReader teclado = new BufferedReader(new InputStreamReader(
                 System.in));
         try {
-            nombreEquipo = this.completarTamañoBytes(nombreEquipo, 40);
-            System.out.println(nombreEquipo);
-            nameJ1 = this.completarTamañoBytes(nameJ1, 20);
-            System.out.println(nameJ1);
-            nameJ2 = this.completarTamañoBytes(nameJ2, 20);
-            System.out.println(nameJ2);
-            nameJ3 = this.completarTamañoBytes(nameJ3, 20);
-            System.out.println(nameJ3);
-            nameJ4 = this.completarTamañoBytes(nameJ4, 20);
-            System.out.println(nameJ4);
+            this.clave = Math.round(Rf.length()/this.tamañoRegistro) + 1;
+            nombreEquipo = this.completarTamañoBytes(nombreEquipo, 20);
+            nameJ1 = this.completarTamañoBytes(nameJ1, 10);
+            nameJ2 = this.completarTamañoBytes(nameJ2, 10);
+            nameJ3 = this.completarTamañoBytes(nameJ3, 10);
+            nameJ4 = this.completarTamañoBytes(nameJ4, 10);
 
             if (Rf.length() != 0) {
                 Rf.seek(Rf.length());
@@ -62,7 +59,7 @@ public class ArchivoAleatorio {
             Rf.writeChars(nameJ3);
             Rf.writeChars(nameJ4);
             Rf.writeBoolean(resultado);
-
+            
         } catch (FileNotFoundException fnfe) {/* Archivo no encontrado */
         } catch (IOException ioe) {
             /* Error al escribir */
@@ -93,23 +90,23 @@ public class ArchivoAleatorio {
                 nameJ3 = "";
                 nameJ4 = "";
 
-                for (int i = 0; i < 41; ++i) {
+                for (int i = 0; i < 20; ++i) {
                     nombreEquipo += Rf.readChar();
                 }
 
-                for (int i = 0; i < 21; ++i) {
+                for (int i = 0; i < 10; ++i) {
                     nameJ1 += Rf.readChar();
                 }
 
-                for (int i = 0; i < 21; ++i) {
+                for (int i = 0; i < 10; ++i) {
                     nameJ2 += Rf.readChar();
                 }
 
-                for (int i = 0; i < 21; ++i) {
+                for (int i = 0; i < 10; ++i) {
                     nameJ3 += Rf.readChar();
                 }
 
-                for (int i = 0; i < 21; ++i) {
+                for (int i = 0; i < 10; ++i) {
                     nameJ4 += Rf.readChar();
                 }
 
@@ -139,10 +136,11 @@ public class ArchivoAleatorio {
 //        }
 //        return clave;
 //    }
+    
     private String completarTamañoBytes(String n, int tamaño) {
 
-        if (n.length() < tamaño + 1) {
-            for (int i = n.length(); i < tamaño + 1; i++) {
+        if (n.length() < tamaño + 1 ) {
+            for (int i = n.length(); i < tamaño; i++) {
                 n = n + " ";
             }
 

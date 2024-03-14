@@ -13,7 +13,6 @@ import java.util.Random;
  */
 public class GameManager {
 
-    private SistemaSonido sistemaSonido;
     private int puntosA = 0;
     private int puntosB = 0;
     private int puntosActual = 0;
@@ -24,7 +23,6 @@ public class GameManager {
     private int totalTurnosEquipo = 0;
 
     public GameManager(GestorJugadores gestorJugadores, TeamPanel teamPanelProximo, TeamPanel teamPanelActual) {
-        this.sistemaSonido = new SistemaSonido();
         this.gestorJugadores = gestorJugadores;
         this.teamPanelActual = teamPanelActual;
         this.teamPanelProximo = teamPanelProximo;
@@ -157,5 +155,5 @@ public class GameManager {
         return puntosB;
     }
     
-
+    
 }

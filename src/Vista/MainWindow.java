@@ -143,6 +143,10 @@ public class MainWindow extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, m);
     }
 
+    public void mensajeConsola(String m){
+        System.out.println(m);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnJugar;
     public javax.swing.JButton btnLanzar;
