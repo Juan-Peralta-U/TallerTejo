@@ -177,7 +177,7 @@ public class GestorJugadores {
             archivoAleatorio.escribir(equipo.getId(), equipo.getNombre()
            ,equipo.getJugador(0).getNombre(), equipo.getJugador(1).getNombre()
            ,equipo.getJugador(2).getNombre(), equipo.getJugador(3).getNombre()
-           ,this.resultados.get(equipo).equals("Ganador") ? true : false);
+           ,this.resultados.get(equipo).equals("Ganador"));
         }
     }
     

@@ -124,18 +124,6 @@ public class ArchivoAleatorio {
         }
         return respuesta;
     }
-
-//    public int ultimoRegistro() {
-//        int clave = 0;
-//        try {
-//            Rf.seek(Rf.length() - tamañoRegistro);
-//            clave = Rf.readInt();
-//        } catch (FileNotFoundException fnfe) {/* Archivo no encontrado */
-//        } catch (IOException ioe) {
-//            /* Error al escribir */
-//        }
-//        return clave;
-//    }
     
     private String completarTamañoBytes(String n, int tamaño) {
 
