@@ -95,16 +95,12 @@ public class TeamPanel extends javax.swing.JPanel {
         labJugador4.setText("Nombre Apellido");
 
         labFoto1.setForeground(new java.awt.Color(0, 0, 0));
-        labFoto1.setText("foto");
 
         labFoto2.setForeground(new java.awt.Color(0, 0, 0));
-        labFoto2.setText("foto");
 
         labFoto3.setForeground(new java.awt.Color(0, 0, 0));
-        labFoto3.setText("foto");
 
         labFoto4.setForeground(new java.awt.Color(0, 0, 0));
-        labFoto4.setText("foto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

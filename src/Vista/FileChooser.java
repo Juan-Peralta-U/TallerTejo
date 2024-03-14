@@ -6,17 +6,23 @@ package Vista;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 
 /**
  *
  * @author cesar
  */
 public class FileChooser {
+
     private JFileChooser fc;
-    
-    public FileChooser() { }
-    
-    public File getFile(){
+    private String nombreVentana;
+
+    public FileChooser(String nombreVentana) {
+        this.nombreVentana = nombreVentana;
+    }
+
+    public File getFile() {
+        UIManager.put("FileChooser.openDialogTitleText", nombreVentana);
         fc = new JFileChooser(System.getProperty("user.dir"));
         fc.showOpenDialog(fc);
         return fc.getSelectedFile();

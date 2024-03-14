@@ -30,7 +30,8 @@ public class GameManager {
         this.teamPanelProximo = teamPanelProximo;
     }
 
-    public void nuevaPartida() {
+    public boolean nuevaPartida() {
+        
         if ((this.totalTurnosEquipo % 2) != 0) {
             this.pasarTurno();
         }
@@ -42,7 +43,8 @@ public class GameManager {
         this.turnoJugador = 0;
         this.pasarTurno();
         this.teamPanelActual.resaltarJugador(this.turnoJugador+1);
-
+        
+        return true;
     }
 
     public String lanzarTejo() {
@@ -89,10 +91,21 @@ public class GameManager {
             puntosActules = this.puntosA;
         }
         
-        if (puntosActules > 26) {
-            this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoActual(), "Ganador");
-            this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoProximo(), "Pededor");
-            return true;
+        // Siempre actual va a ser B
+        if (turnoJugador == 3 && (totalTurnosEquipo % 2) == 0) {
+            
+            if(puntosA > 26 && puntosA > puntosB){
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoProximo(), "Ganador");
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoActual(), "Perdedor");
+                return true;
+            }
+            
+            if(puntosB > 26 && puntosB > puntosA){
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoActual(), "Ganador");
+                this.gestorJugadores.AgregarResultados(this.gestorJugadores.getEquipoProximo(), "Perdedor");
+                return true;
+            }
+            
         }
 
         return false;
@@ -116,10 +129,6 @@ public class GameManager {
         }
     }
 
-    public String getPuntos() {
-        return this.puntosA + " : " + this.puntosB;
-    }
-
     public void pasarTurno() {
         this.turnoJugador = 0;
         this.totalTurnosEquipo++;
@@ -135,5 +144,18 @@ public class GameManager {
 
 
     }
+    
+    public String getPuntos() {
+        return this.puntosA + " : " + this.puntosB;
+    }
+
+    public int getPuntosA() {
+        return puntosA;
+    }
+
+    public int getPuntosB() {
+        return puntosB;
+    }
+    
 
 }

@@ -35,8 +35,8 @@ public class Equipo {
         return departamento;
     }
     
-    public String getJugador(int index){
-        return this.jugadores.get(index).getNombre();
+    public Jugador getJugador(int index){
+        return this.jugadores.get(index);
     }
     
     public void add(Jugador nuevoJugador){

@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Modelo.ArchivoAleatorio;
 import Modelo.ArchivoPropiedades;
 import Modelo.Equipo;
 import Vista.FileChooser;
@@ -11,6 +12,7 @@ import Vista.MainWindow;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,19 +20,24 @@ import java.awt.event.ActionListener;
  */
 public class ControlManager implements ActionListener {
 
-    private MainWindow ventanaPrincipal;
-    private FileChooser fileChooser;
+    private FileChooser fileChooser1;
+    private FileChooser fileChooser2;
     private ArchivoPropiedades dataEquipos;
     private GameManager gestorPrincipal;
     private GestorJugadores gestorJugadores;
+    private ArchivoAleatorio archivoSalida;
+    private MainWindow ventanaPrincipal;
 
     public ControlManager() {
         ventanaPrincipal = new MainWindow(this);
-        fileChooser = new FileChooser();
-        dataEquipos = new ArchivoPropiedades(fileChooser.getFile());
+        
+        
+        fileChooser1 = new FileChooser("Selecciona archivo propiedades");
+        fileChooser2 = new FileChooser("Seleccione el archivo aleatorio");
+        dataEquipos = new ArchivoPropiedades(fileChooser1.getFile());
         gestorJugadores = new GestorJugadores();
         gestorJugadores.cargarEquipos(dataEquipos);
-        gestorPrincipal = new GameManager(gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
+        gestorPrincipal = new GameManager(this.gestorJugadores, this.ventanaPrincipal.teamPanelA, this.ventanaPrincipal.teamPanelB);
         gestorPrincipal.nuevaPartida();
         
         ventanaPrincipal.btnLanzar.addActionListener(this);
@@ -45,27 +52,46 @@ public class ControlManager implements ActionListener {
 
         switch (e.getActionCommand()) {
             case "Lanzar el tejo" -> {
+                
                 ventanaPrincipal.mensajeEmergente("" + this.gestorPrincipal.lanzarTejo());
                 this.gestorPrincipal.asignarPuntaje();
+                ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
+                
                 if(this.gestorPrincipal.comprobarGanador()){
                    ventanaPrincipal.btnJugar.setEnabled(true);
                    ventanaPrincipal.btnLanzar.setEnabled(false);
-                   ventanaPrincipal.mensajeEmergente(this.gestorJugadores.getEquipoActual().getNombre()+ " ha Ganado");
+                   
+                   if(gestorPrincipal.getPuntosA() > gestorPrincipal.getPuntosB()){
+                       ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoProximo().getNombre() + " ha ganado");
+                   } else {
+                       ventanaPrincipal.mensajeEmergente(gestorJugadores.getEquipoActual().getNombre() + " ha ganado");
+                   }
+                   
                 }
+                
                 this.gestorPrincipal.manejarTurno();
-                ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
                 ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Volver a jugar" -> {
                 configurarEquipos();
+                
+                if(gestorJugadores.getEquipoActual().getJugadores().size()<4){
+                    ventanaPrincipal.mensajeEmergente("No hay suficientes equipos o jugadores para una nueva partida");
+                    return;
+                }
+                
+                gestorPrincipal.nuevaPartida();
+               
                 ventanaPrincipal.btnJugar.setEnabled(false);
-                ventanaPrincipal.btnLanzar.setEnabled(true);                
-                this.gestorPrincipal.nuevaPartida();
+                ventanaPrincipal.btnLanzar.setEnabled(true);           
+                
                 ventanaPrincipal.labPuntos.setText(this.gestorPrincipal.getPuntos());
                 ventanaPrincipal.labTurno.setText("Turno:" + this.gestorPrincipal.getTurnos());
             }
             case "Salir" -> {
-                //Gurdar
+                archivoSalida = new ArchivoAleatorio(fileChooser2.getFile());
+                //Guardar
+                //Leer y dar resultados en consola
                 //Salir
             }
         }
